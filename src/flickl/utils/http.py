@@ -18,6 +18,5 @@ class HTTP:
             js = response.json()
         except Exception as e:
             js = {}
-
         return {'ok': response.ok, 'status_code': response.status_code, 'reason': '', 'json': js, 'response_header': response.headers, 'response_cookies': response.cookies, 'content': response.text}
 
