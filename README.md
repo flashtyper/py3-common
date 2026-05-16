@@ -1,0 +1,1 @@
+[![Build & Release (Python)](https://github.com/flashtyper/py3-flickl/actions/workflows/release.yml/badge.svg?branch=main&event=release)](https://github.com/flashtyper/py3-flickl/actions/workflows/release.yml)
