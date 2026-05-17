@@ -1,5 +1,0 @@
-pyproject.toml
-src/flickl_monitoring.egg-info/PKG-INFO
-src/flickl_monitoring.egg-info/SOURCES.txt
-src/flickl_monitoring.egg-info/dependency_links.txt
-src/flickl_monitoring.egg-info/top_level.txt
