@@ -1,4 +1,5 @@
 build
-.github
 *egg-info
+.venv
+.idea
 
