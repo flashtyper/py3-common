@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "flickl"
+name = "py3-common"
 version = "0.1.0"
-description = "flickl utilities and monitoring"
+description = "common utilities and monitoring"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [{ name = "Your Name", email = "you@example.com" }]
