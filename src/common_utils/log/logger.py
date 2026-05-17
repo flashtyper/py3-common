@@ -13,6 +13,7 @@ class LoggingLevels(Enum):
 
 
 class Logger:
+    # Logging class for various applications
     def __init__(self, name: str):
         self.log = logging.getLogger(name)
         logging.basicConfig(encoding='utf-8', level=logging.INFO, format='[%(levelname)s %(asctime)s - %(name)s %(funcName)s %(lineno)s] %(message)s', datefmt='[%d.%m.%Y %H:%M:%S]')
