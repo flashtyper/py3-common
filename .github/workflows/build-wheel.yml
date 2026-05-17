@@ -1,4 +1,4 @@
-name: Build Python wheel
+name: Build and release Python wheel
 
 on:
   push:
@@ -6,10 +6,10 @@ on:
       - "v*"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,9 +25,8 @@ jobs:
       - name: Build wheel
         run: python -m build --wheel
 
-      - name: Upload wheel artifact
-        uses: actions/upload-artifact@v4
+      - name: Create GitHub release and upload wheel
+        uses: softprops/action-gh-release@v2
         with:
-          name: python-wheel
-          path: dist/*.whl
-
+          files: dist/*.whl
+          generate_release_notes: true
