@@ -22,6 +22,12 @@ jobs:
       - name: Install build tooling
         run: python -m pip install --upgrade pip build
 
+      - name: Set package version from tag
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "Building version $VERSION"
+          sed -i "s/^version = .*/version = \"$VERSION\"/" pyproject.toml
+
       - name: Build wheel
         run: python -m build --wheel
 
