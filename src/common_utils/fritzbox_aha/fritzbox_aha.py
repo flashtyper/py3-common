@@ -141,7 +141,6 @@ class FritzBoxAHA:
             return []
         url = '/webservices/homeautoswitch.lua'
         xml = self.__http_get(url, params={"switchcmd": "getdevicelistinfos", "sid": self.sid})
-        print(xml)
         tree = ET.ElementTree(ET.fromstring(xml))
         root = tree.getroot()
 
