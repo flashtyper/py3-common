@@ -2,8 +2,7 @@ import requests
 import re
 import hashlib
 import xml.etree.ElementTree as ET
-from common_utils.fritzbox_aha_interface.models.devices import EnergyMeter
-
+from common_utils.fritzbox_aha.models.devices import EnergyMeter
 
 class FritzBoxAHA:
     def __init__(self, ip: str, username: str, password: str, path_to_ca_file: str, verify_ca=True):
