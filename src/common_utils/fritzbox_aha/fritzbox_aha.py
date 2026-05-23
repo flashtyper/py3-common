@@ -2,7 +2,7 @@ import requests
 import re
 import hashlib
 import xml.etree.ElementTree as ET
-from fritzbox_aha_interface.models.devices import EnergyMeter
+from common_utils.fritzbox_aha_interface.models.devices import EnergyMeter
 
 
 class FritzBoxAHA:
