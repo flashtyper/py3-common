@@ -6,6 +6,30 @@ class HTTP:
         self.session = rq.Session()
 
     def make_request(self, url: str, method: str = 'GET', cookies=None, headers=None, body=None, params=None) -> dict:
+        """Performs a http call with given arguments.
+        On Success it returns the following dict:
+        ```
+        {
+            'ok': response.ok,
+            'status_code': response.status_code,
+            'reason': response.reason,
+            'js': response.json(),
+            'response_header': response.header,
+            'response_cookies': response.cookies
+        }
+        ```
+
+        On failure it returns (without a js key):
+        ```
+        {
+            'ok': response.ok,
+            'status_code': response.status_code,
+            'reason': response.reason,
+            'response_header': response.header,
+            'response_cookies': response.cookies
+        }
+        ```
+        """
         response = None
         if method == 'GET':
             response = self.session.get(url, headers=headers, cookies=cookies, data=body, params=params)
