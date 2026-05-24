@@ -14,6 +14,9 @@ class LoggingLevels(Enum):
 
 
 def concat_msgs(msgs: Union[str, list], delimiter=',') -> str:
+    # Joins list of strings with a given delimiter. If `msgs` is a string,
+    # then it returns the string.
+    # Raises a ValueError if `msgs` is neither a string nor a list of strings
     if isinstance(msgs, str):
         return msgs
     elif isinstance(msgs, list):
@@ -29,23 +32,30 @@ class Logger:
         logging.basicConfig(encoding='utf-8', level=logging.INFO, format='[%(levelname)s %(asctime)s - %(name)s] %(message)s', datefmt='%d.%m.%Y %H:%M:%S')
 
     def change_level(self, level: LoggingLevels):
+        # Changes the log level to a given `LoggingLevels` 
         self.log.setLevel(level.value)
         self.log.log(level.value, 'Changed to level {}'.format(level.name))
 
     def info(self, *messages):
+        # Logs with log level `info`
         self.log.info(concat_msgs(list(messages)))
 
     def warning(self, *messages: str):
+        # Logs with log level `warning`
         self.log.warning(messages)
 
     def error(self, *messages: str):
+        # Logs with log level `error`
         self.log.error(messages)
 
     def critical(self, *messages: str):
+        # Logs with log level `critical`
         self.log.critical(messages)
 
     def fatal(self, *messages: str):
+        # Logs with log level `fatal`
         self.log.fatal(messages)
 
     def debug(self, *messages: str):
+        # Logs with log level `debug`
         self.log.debug(messages)
