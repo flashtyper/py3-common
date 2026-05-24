@@ -3,6 +3,7 @@ import logging
 
 
 def format_json_for_import(metric_name: str, values: list, timestamps: list, labels: dict = None) -> dict:
+    # Assembels a new dictionary accordingly the json line protocol of victoriametrics and returns it
     js = {}
     if len(values) != len(timestamps):
         return js
@@ -27,7 +28,8 @@ class VictoriaMetrics:
         response = self.session.post(url, headers={'Content-Type': 'application/json'}, json=data)
         return response.status_code, response
 
-    def import_series(self, data):
+    def import_series(self, data: Union[dict, list[dict]]):
+        # Sends metrics in json line protocol to victoriametrics host. 
         base_q = f'http://{self.host}/api/v1/import'
         if isinstance(data, list):
             results = []
