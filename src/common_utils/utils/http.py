@@ -31,10 +31,14 @@ class HTTP:
         ```
         """
         response = None
-        if method == 'GET':
-            response = self.session.get(url, headers=headers, cookies=cookies, data=body, params=params)
-        elif method == 'POST':
-            response = self.session.post(url, headers=headers, cookies=cookies, data=body, params=params)
+        try:
+            if method == 'GET':
+                response = self.session.get(url, headers=headers, cookies=cookies, data=body, params=params)
+            elif method == 'POST':
+                response = self.session.post(url, headers=headers, cookies=cookies, data=body, params=params)
+        except Exception as e:
+            # Catching transport exceptions like SSL errors, Timeouts etc.
+            return {'ok': False, 'status_code': 900, 'reason': f'{e.__class__.__name__}: {str(e)}', 'response_header': {}, 'response_cookies': {}}
 
         if response.status_code != 200:
             return {'ok': response.ok, 'status_code': response.status_code, 'reason': response.reason, 'response_header': response.headers, 'response_cookies': response.cookies}
