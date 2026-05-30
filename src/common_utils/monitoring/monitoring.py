@@ -33,6 +33,7 @@ class Monitoring:
 
     def check_threshold(self, value: Union[int, float], low_warn, high_warn, low_crit, high_crit) -> bool:
         # Checks if a given value lays between thresholds and escalates the internal state
+        # Returns False, if no threshold is crossed. True otherwise.
         if value <= low_crit or value >= high_crit:
             self.escalate_to(2)
             return True
@@ -41,9 +42,17 @@ class Monitoring:
             return True
         return False
 
-    def build_message(self, label, message):
+    def build_message(self, label: str, message: str):
         # Adds a label with message to the plugin output
         self.output.append(f'{label}: {message}')
 
-
+    def build_message_and_set_state(self, new_state: Union[str, int], label: str, message: str):
+        # Adds a label with message to the plugin output and sets
+        # the current state to `new_state`
+        self.output.append(f'{label}: {message}')
+        if isinstance(new_state, str):
+            new_state_number = self.states[new_state]
+        else:
+            new_state_number = new_state
+       self.state = new_state_number
 
